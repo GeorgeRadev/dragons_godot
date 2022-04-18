@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://dragon/dragon.gltf" type="PackedScene" id=1]
+
+[node name="Dragon" instance=ExtResource( 1 )]
+transform = Transform( 0.312688, 0, 0, 0, 0.312688, 0, 0, 0, 0.312688, 0, 0, 0 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"

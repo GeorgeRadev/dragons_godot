@@ -1,0 +1,596 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://objects/grass8x8.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Waterfall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/grass2x2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/wall4x4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/sand_stones.jpg" type="Texture" id=5]
+[ext_resource path="res://medieval/grassTriangles.jpg" type="Texture" id=6]
+[ext_resource path="res://objects/Water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/bridge.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/ground1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/ground2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/gate.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/rookTop.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/rookSquare.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/rookBodyDoor.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/wall3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://objects/wallDoor.tscn" type="PackedScene" id=16]
+[ext_resource path="res://objects/stone1.tscn" type="PackedScene" id=17]
+[ext_resource path="res://objects/cloud.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/tree1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/tree3.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/tree2.tscn" type="PackedScene" id=21]
+[ext_resource path="res://objects/treePine.tscn" type="PackedScene" id=22]
+[ext_resource path="res://objects/stone2.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Fish.tscn" type="PackedScene" id=24]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.729915, 7.18981e-07, -32.046, 0, 0, -7.50795, 0, 0, 7.50795, -0.889355, 0, -16.8635, 0, 0, -5.63096, 0, 0, 5.63096, 0.789179, 7.15256e-07, -0.119158, -0.357525, 0, -7.50794, 0.357525, 0, 7.50794, -2.22415, 7.18981e-07, 31.8429 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+uniform sampler2D sand_texture;
+void fragment() {
+	vec2 road_uv = vec2(UV.y, UV.x/10.0);
+	vec4 color = texture(sand_texture, road_uv);
+	ALBEDO = color.rgb;
+	METALLIC = 0.0;
+	ROUGHNESS = 0.8;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/sand_texture = ExtResource( 5 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial;
+uniform sampler2D sand_texture;
+void fragment() {
+	vec2 road_uv = vec2(UV.y*7.0, UV.x);
+	vec4 color = texture(sand_texture, road_uv);
+	ALBEDO = color.rgb - 0.24;
+	METALLIC = 0.0;
+	ROUGHNESS = 1.0;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 2 )
+shader_param/sand_texture = ExtResource( 6 )
+
+[node name="Level1" type="Spatial"]
+
+[node name="ground" type="Spatial" parent="."]
+
+[node name="grass2" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79947, 26.9311, 8 )
+
+[node name="grass4" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.7995, 26.9311, 8 )
+
+[node name="grass5" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58942, 26.9311, -8 )
+
+[node name="grass6" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58942, 26.9311, -24 )
+
+[node name="grass7" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5894, 26.9311, -8 )
+
+[node name="grass8" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5894, 26.9311, -24 )
+
+[node name="grass10" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9651, 26.9311, 8 )
+
+[node name="grass11" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9651, 26.9311, 24 )
+
+[node name="treePine" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.1169, 26.8889, -21.5163 )
+
+[node name="treePine3" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.698408, 0, 0, 0, 0.698408, 0, 0, 0, 0.698408, -17.9368, 26.8506, -15.593 )
+
+[node name="treePine5" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.454307, 0, 0, 0, 0.454307, 0, 0, 0, 0.454307, -9.49086, 26.8506, -19.3087 )
+
+[node name="treePine6" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.605393, 0, 0, 0, 0.605393, 0, 0, 0, 0.605393, -6.45308, 26.8506, -17.1415 )
+
+[node name="treePine7" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.784441, 0, 0, 0, 0.784441, 0, 0, 0, 0.784441, -3.13921, 26.8506, -9.3533 )
+
+[node name="treePine8" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.784441, 0, 0, 0, 0.784441, 0, 0, 0, 0.784441, -15.7271, 26.8506, -10.539 )
+
+[node name="treePine9" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.71141, 0, 0, 0, 0.71141, 0, 0, 0, 0.71141, -22.5837, 26.8506, -0.587432 )
+
+[node name="treePine10" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -25.2742, 26.8506, 13.1033 )
+
+[node name="treePine11" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -14.7103, 26.8506, 21.598 )
+
+[node name="treePine12" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -8.58599, 26.8506, 9.64949 )
+
+[node name="treePine13" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -3.06553, 26.8506, 17.7515 )
+
+[node name="treePine14" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -1.81481, 26.8506, 4.07228 )
+
+[node name="treePine15" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.510107, 0, 0, 0, 0.510107, 0, 0, 0, 0.510107, -9.26281, 26.8506, 20.7682 )
+
+[node name="treePine16" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.510107, 0, 0, 0, 0.510107, 0, 0, 0, 0.510107, -19.245, 26.8506, 6.32829 )
+
+[node name="treePine17" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -21.1675, 26.8506, -3.29628 )
+
+[node name="treePine18" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -2.5846, 26.8506, 1.58931 )
+
+[node name="treePine28" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -16.5999, 37.132, 37.8005 )
+
+[node name="treePine31" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -21.8231, 30.8789, 35.3633 )
+
+[node name="treePine32" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -34.4978, 30.8789, 35.3633 )
+
+[node name="treePine29" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.654418, 0, 0, 0, 0.654418, 0, 0, 0, 0.654418, -2.02558, 37.132, 33.9203 )
+
+[node name="treePine30" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -4.95801, 37.132, 38.7194 )
+
+[node name="treePine19" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -36.511, 29.3063, 15.755 )
+
+[node name="treePine20" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -42.8058, 29.3063, 13.5176 )
+
+[node name="treePine21" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.581431, 0, 0.160557, 0, 0.603191, 0, -0.160557, 0, 0.581431, -44.7743, 29.3063, 7.06556 )
+
+[node name="treePine22" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.921509, 0, 0.254466, 0, 0.955997, 0, -0.254466, 0, 0.921509, -43.5392, 29.3063, -0.0689049 )
+
+[node name="treePine23" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -25.6539, 32.8633, -32.3529 )
+
+[node name="treePine24" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.491704, 0, 0.13578, 0, 0.510107, 0, -0.13578, 0, 0.491704, -42.5365, 32.8633, -3.61959 )
+
+[node name="treePine25" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.581431, 0, 0.160557, 0, 0.603191, 0, -0.160557, 0, 0.581431, -39.3296, 32.8633, -27.0821 )
+
+[node name="treePine26" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.921509, 0, 0.254466, 0, 0.955997, 0, -0.254466, 0, 0.921509, -43.27, 32.8633, -17.206 )
+
+[node name="treePine27" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.921509, 0, 0.254466, 0, 0.955997, 0, -0.254466, 0, 0.921509, -33.3928, 32.8633, -35.5698 )
+
+[node name="treePine4" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -21.4818, 26.8889, -8.53515 )
+
+[node name="stone2" parent="ground" instance=ExtResource( 23 )]
+transform = Transform( 1.29261, 0, 0, 0, 1.29261, 0, 0, 0, 1.29261, -2.28082, 27.1661, -29.4919 )
+
+[node name="stone5" parent="ground" instance=ExtResource( 23 )]
+transform = Transform( -1.24065, 0, -0.362793, 0, 1.29261, 0, 0.531427, 0, -1.81734, 50.3783, 27.1661, -28.1659 )
+
+[node name="stone4" parent="ground" instance=ExtResource( 23 )]
+transform = Transform( 1.04049, 0, 0.76695, 0, 0.94193, 0, -0.76695, 0, 1.04049, -31.5689, 27.1661, 0.295593 )
+
+[node name="stone3" parent="ground" instance=ExtResource( 17 )]
+transform = Transform( -0.0626568, 0.135988, -0.988727, -0.00824268, 0.990569, 0.136764, 0.998001, 0.016719, -0.060945, -16.4619, 23.3662, -32.7113 )
+
+[node name="treePine2" parent="ground" instance=ExtResource( 22 )]
+transform = Transform( 0.611273, 0, 0, 0, 0.611273, 0, 0, 0, 0.611273, -13.954, 26.8889, -22.0066 )
+
+[node name="grass12" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9651, 26.9311, 8 )
+
+[node name="grass13" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.0861, 26.9311, -8 )
+
+[node name="grass14" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9643, 26.9311, -24 )
+
+[node name="grass15" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0861, 26.9311, -8 )
+
+[node name="grass16" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0861, 26.9311, -24 )
+
+[node name="grass" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.318, 26.9311, 23.8809 )
+
+[node name="grass3" parent="ground" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.8961, 30.9423, 30.7097 )
+
+[node name="grass17" parent="ground" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.856105, 0.516802, 0, -0.516802, 0.856105, -21.9314, 27.9405, 17.5671 )
+
+[node name="grass18" parent="ground" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.856105, 0.516802, 0, -0.516802, 0.856105, -21.9314, 29.9562, 20.9794 )
+
+[node name="ground1" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( -0.0915017, 0, 0.995805, 0, 1, 0, -0.995805, 0, -0.0915017, -35.7183, 24.1163, 7.10306 )
+
+[node name="ground2" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( -0.0429731, 0, 0.467672, 0, 0.777792, 0, -0.467672, 0, -0.0429731, -0.368279, 25.5732, 27.6759 )
+
+[node name="stone1" parent="ground" instance=ExtResource( 17 )]
+transform = Transform( 0.735412, 0, -0.677621, 0, 1, 0, 0.677621, 0, 0.735412, 39.9973, 23.0501, 14.8289 )
+
+[node name="ground3" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( 0.491346, 0, 0.506941, 0, 1.1692, 0, -0.506941, 0, 0.491346, 30.9309, 25.5732, 24.676 )
+
+[node name="ground4" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( 0.352137, 0, -0.61189, 0, 1.1692, 0, 0.61189, 0, 0.352137, 40.1442, 25.5732, -32.6503 )
+
+[node name="ground5" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( 0.352137, 0, -0.61189, 0, 1.1692, 0, 0.61189, 0, 0.352137, 45.1441, 25.5732, 1.0488 )
+
+[node name="ground6" parent="ground" instance=ExtResource( 9 )]
+transform = Transform( -0.596034, 0, 0.378357, 0, 1.1692, 0, -0.378357, 0, -0.596034, 45.1722, 23.4808, -12.5567 )
+
+[node name="ground2" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.897045, 0, 0.02114, 0, 0.897294, 0, -0.02114, 0, -0.897045, -9.62137, 25.9333, 32.8172 )
+
+[node name="ground3" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.876934, 0, 0.190064, 0, 0.897294, 0, -0.190064, 0, -0.876934, 20.111, 25.9333, 26.9659 )
+
+[node name="ground5" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.876934, 0, 0.190064, 0, 0.897294, 0, -0.190064, 0, -0.876934, 24.1146, 25.9333, -33.8584 )
+
+[node name="ground4" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.708324, 0, -1.20666, 0, 0.50223, 0, 1.80762, 0, -0.414656, -34.3729, 26.622, -19.6528 )
+
+[node name="river" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.82647, 0, 0 )
+
+[node name="Path" type="Path" parent="river"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.9099, 0.0507956 )
+curve = SubResource( 1 )
+
+[node name="riverbed" type="CSGPolygon" parent="river/Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07328, 0.0356412, 0 )
+use_collision = true
+polygon = PoolVector2Array( -5, 0, -3, -1, 3, -1, 5, 0, 4.5, -3, -4.5, -3 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 3.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = false
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 6 )
+
+[node name="left_ground" type="CSGPolygon" parent="river/Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07328, 0.0401535, 0 )
+use_collision = true
+polygon = PoolVector2Array( -10, 0, -5, 0, -5, -1 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 3.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = false
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 4 )
+
+[node name="right_ground" type="CSGPolygon" parent="river/Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07328, 0.035641, 0 )
+use_collision = true
+polygon = PoolVector2Array( 10, 0, 5, 0, 5, -1 )
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 3.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = true
+path_continuous_u = false
+path_u_distance = 1.0
+path_joined = false
+material = SubResource( 4 )
+
+[node name="Water" parent="river" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 1.3407, 26.839, -18.2228 )
+
+[node name="Water2" parent="river" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 1.3407, 26.839, 1.77503 )
+
+[node name="Water3" parent="river" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 1.3407, 26.839, 21.775 )
+
+[node name="Fish" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.678675, 0, 0.114436, 0, 0.688255, 0, -0.114436, 0, 0.678675, -0.252441, 26.2727, -22.8992 )
+
+[node name="Fish2" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.678675, 0, 0.114436, 0, 0.688255, 0, -0.114436, 0, 0.678675, -0.441962, 26.2727, -22.2761 )
+
+[node name="Fish3" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.678675, 0, 0.114436, 0, 0.688255, 0, -0.114436, 0, 0.678675, -0.971509, 26.2727, -20.7928 )
+
+[node name="Fish4" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.670618, 0, -0.154812, 0, 0.688255, 0, 0.154812, 0, 0.670618, 4.63847, 26.4287, -2.56261 )
+
+[node name="Fish5" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.670618, 0, -0.154812, 0, 0.688255, 0, 0.154812, 0, 0.670618, 3.67086, 26.1889, -1.23005 )
+
+[node name="Fish6" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.670618, 0, -0.154812, 0, 0.688255, 0, 0.154812, 0, 0.670618, 3.40919, 26.4721, -2.46468 )
+
+[node name="Fish7" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.687957, 0, -0.0202499, 0, 0.688255, 0, 0.0202499, 0, 0.687957, 0.553789, 26.4287, 8.81704 )
+
+[node name="Fish8" parent="river" instance=ExtResource( 24 )]
+transform = Transform( 0.687957, 0, -0.0202499, 0, 0.688255, 0, 0.0202499, 0, 0.687957, -0.133614, 26.1889, 10.3135 )
+
+[node name="waterfall" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61965, 0, -31.6272 )
+
+[node name="waterfall" parent="waterfall" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.9311, 3.33493 )
+
+[node name="walls" type="Spatial" parent="."]
+
+[node name="wall" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -19.2065, 29.6694, 25.9888 )
+
+[node name="wall3" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -19.2065, 29.6694, 33.99 )
+
+[node name="wall6" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -36.9245, 29.6694, 25.9888 )
+
+[node name="wall7" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -36.9245, 29.6694, 33.99 )
+
+[node name="wall4" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -24.2568, 29.6694, 38.7049 )
+
+[node name="wall5" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -32.1717, 29.6694, 38.7049 )
+
+[node name="wall8" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, -1, 0, 0.521054, -2.2776e-08, -0.853523, 0.853523, -3.73087e-08, 0.521054, -27.9365, 28.4637, 19.5332 )
+
+[node name="wall9" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, -1, 0, 0.521054, -2.2776e-08, -0.853523, 0.853523, -3.73087e-08, 0.521054, -35.8514, 28.4637, 19.5332 )
+
+[node name="wall2" parent="walls" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0.854531, 0.5194, 3.73528e-08, -0.5194, 0.854531, -2.27037e-08, -19.2296, 25.8307, 20.8471 )
+
+[node name="Bridges" type="Spatial" parent="."]
+
+[node name="bridge1" type="Spatial" parent="Bridges"]
+transform = Transform( 1.95237, 0, 0.433867, 0, 2, 0, -0.433867, 0, 1.95237, 8.51473, -0.187628, -14.3325 )
+
+[node name="bridge1" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, -0.318314, 0.947985, -1.3914e-08, 0.947985, 0.318314, -1, -7.45058e-09, -2.98023e-08, -2.71753, 13.3563, 0 )
+
+[node name="bridge2" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0.318314, -0.947985, 0, 0.947985, 0.318314, 1, 7.45058e-09, -4.47035e-08, 1.98209, 13.3625, 0 )
+
+[node name="bridge3" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -0.852537, 13.498, -4.76837e-07 )
+
+[node name="bridge5" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, -1.84999, 13.498, 0 )
+
+[node name="bridge4" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, 0.140931, 13.498, 0 )
+
+[node name="bridge6" parent="Bridges/bridge1" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0, 1, 0, 1, 0, -1, 0, -4.47035e-08, 1.12947, 13.498, 0 )
+
+[node name="bridge2" type="Spatial" parent="Bridges"]
+transform = Transform( 1.98883, 0, -0.21107, 0, 2, 0, 0.21107, 0, 1.98883, 9.25645, -0.0566349, 11.4843 )
+
+[node name="bridge1" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -5.96046e-08, -0.318314, 0.947985, -1.3914e-08, 0.947985, 0.318314, -1, 0, -5.96046e-08, -2.71753, 13.3563, 1.43051e-06 )
+
+[node name="bridge2" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -2.98023e-08, 0.318314, -0.947985, 0, 0.947985, 0.318314, 1, 1.49012e-08, -2.98023e-08, 1.98209, 13.3625, 9.53674e-07 )
+
+[node name="bridge3" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -5.96046e-08, -0.0697565, 0.997564, 0, 0.997564, 0.0697565, -1, 3.25963e-09, -4.47035e-08, -0.852537, 13.6851, 9.53674e-07 )
+
+[node name="bridge5" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -5.96046e-08, -0.139173, 0.990268, 0, 0.990268, 0.139173, -1, 8.3819e-09, -5.96046e-08, -1.79664, 13.5736, 9.53674e-07 )
+
+[node name="bridge4" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -5.96046e-08, 0.0697565, 0.997564, 0, 0.997564, -0.0697565, -1, -3.25963e-09, -4.47035e-08, 0.140932, 13.6526, 9.53674e-07 )
+
+[node name="bridge6" parent="Bridges/bridge2" instance=ExtResource( 8 )]
+transform = Transform( -4.47035e-08, 0.139173, 0.990268, 0, 0.990268, -0.139173, -1, -8.3819e-09, -5.96046e-08, 1.1138, 13.5508, 0 )
+
+[node name="Castle1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -84.1961, 24.5175, -30.9515 )
+
+[node name="ground0" parent="Castle1" instance=ExtResource( 10 )]
+transform = Transform( 1.27776, 0, 0, 0, 1.01643, 0, 0, 0, 1.27776, -0.499077, 9.85117, 4.3431 )
+
+[node name="ground1" parent="Castle1" instance=ExtResource( 9 )]
+transform = Transform( -0.0718073, 0, -1.69349, 0, 1.00268, 0, 1.69349, 0, -0.0718073, 10.4447, 12.8248, 16.7853 )
+
+[node name="ground2" parent="Castle1" instance=ExtResource( 9 )]
+transform = Transform( 1.27776, 0, 0, 0, 1.01643, 0, 0, 0, 1.27776, -12.7508, 13.884, 19.9693 )
+
+[node name="ground3" parent="Castle1" instance=ExtResource( 9 )]
+transform = Transform( 0.634086, 0, -1.10933, 0, 1.01643, 0, 1.10933, 0, 0.634086, -22.4821, 13.884, 0.0924568 )
+
+[node name="ground4" parent="Castle1" instance=ExtResource( 9 )]
+transform = Transform( 1.22896, 0, -0.349776, 0, 1.01643, 0, 0.349776, 0, 1.22896, -3.84763, 11.1808, -13.3658 )
+
+[node name="ground5" parent="Castle1" instance=ExtResource( 9 )]
+transform = Transform( 1.22896, 0, -0.349776, 0, 1.01643, 0, 0.349776, 0, 1.22896, 13.5446, 13.884, -4.04855 )
+
+[node name="gate" parent="Castle1" instance=ExtResource( 11 )]
+transform = Transform( -0.0133241, 0, -0.499822, 0, 0.5, 0, 0.499822, 0, -0.0133241, 22.1192, 17.9523, 14.8982 )
+
+[node name="rookTop" parent="Castle1" instance=ExtResource( 12 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.1075, 31.4635, 4.40103 )
+
+[node name="rookSquare" parent="Castle1" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 21.2559, 11.5976, 30.6335 )
+
+[node name="rookSquare2" parent="Castle1" instance=ExtResource( 13 )]
+transform = Transform( 0.68829, 0, -0.127505, 0, 0.7, 0, 0.127505, 0, 0.68829, 8.25058, 10.5429, 30.259 )
+
+[node name="rookSquare3" parent="Castle1" instance=ExtResource( 13 )]
+transform = Transform( 0.698766, 0, -0.041551, 0, 0.7, 0, 0.041551, 0, 0.698766, -3.74194, 10.5429, 27.2013 )
+
+[node name="rookBodyDoor" parent="Castle1" instance=ExtResource( 14 )]
+transform = Transform( -0.202276, 0, -0.457258, 0, 0.5, 0, 0.457258, 0, -0.202276, 2.02909, 22.5788, 4.39727 )
+
+[node name="rookBodyDoor3" parent="Castle1" instance=ExtResource( 14 )]
+transform = Transform( -0.202276, 0, -0.457258, 0, 0.5, 0, 0.457258, 0, -0.202276, 2.02909, 28.5249, 4.39727 )
+
+[node name="rookBodyDoor2" parent="Castle1" instance=ExtResource( 14 )]
+transform = Transform( 0.204492, 0, 0.456271, 0, 0.5, 0, -0.456271, 0, 0.204492, 2.10154, 25.5494, 4.35943 )
+
+[node name="wallDoor" parent="Castle1" instance=ExtResource( 16 )]
+transform = Transform( 0.499917, 0, -0.00909266, 0, 0.5, 0, 0.00909266, 0, 0.499917, 16.8319, 17.9749, 30.6496 )
+
+[node name="wallDoor2" parent="Castle1" instance=ExtResource( 16 )]
+transform = Transform( 0.499917, 0, -0.00909266, 0, 0.5, 0, 0.00909266, 0, 0.499917, 12.1727, 17.9749, 30.6496 )
+
+[node name="wall3" parent="Castle1" instance=ExtResource( 15 )]
+transform = Transform( 0.480244, 0, -0.13916, 0, 0.5, 0, 0.13916, 0, 0.480244, 2.23125, 17.2124, 28.5364 )
+
+[node name="stone1" parent="Castle1" instance=ExtResource( 17 )]
+transform = Transform( 0.626151, 0.287772, 0, -0.287772, 0.626151, 0, 0, 0, 0.689114, 24.8652, 17.2086, -4.97501 )
+
+[node name="wall4" parent="Castle1" instance=ExtResource( 15 )]
+transform = Transform( 0.499999, 0, -0.0011781, 0, 0.5, 0, 0.0011781, 0, 0.499999, -10.2775, 17.2124, 26.9877 )
+
+[node name="cloud3" parent="Castle1" instance=ExtResource( 18 )]
+transform = Transform( 1.43115, 0, -0.75625, 0, 1.61867, 0, 0.75625, 0, 1.43115, -20.0565, 34.1463, 48.6795 )
+
+[node name="cloud2" parent="Castle1" instance=ExtResource( 18 )]
+transform = Transform( 1.64034, 0, 0, 0, 1.64034, 0, 0, 0, 1.64034, 37.2358, 26.7722, -30.0371 )
+
+[node name="cloud" parent="Castle1" instance=ExtResource( 18 )]
+transform = Transform( 0.700928, 0, -0.370386, 0, 0.79277, 0, 0.370386, 0, 0.700928, -4.05772, 26.7486, 52.6142 )
+
+[node name="Castle2" type="Spatial" parent="."]
+transform = Transform( -0.991132, 0, -0.132879, 0, 1, 0, 0.132879, 0, -0.991132, 79.083, 24.5175, 60.6996 )
+
+[node name="ground0" parent="Castle2" instance=ExtResource( 10 )]
+transform = Transform( 1.27776, 0, -2.98023e-08, 0, 1.01643, 0, 2.98023e-08, 0, 1.27776, -0.499077, 8.91423, 4.3431 )
+
+[node name="ground1" parent="Castle2" instance=ExtResource( 9 )]
+transform = Transform( -0.0718073, 0, -1.69349, 0, 1.00268, 0, 1.69349, 0, -0.0718073, 10.4447, 12.8248, 16.7853 )
+
+[node name="ground2" parent="Castle2" instance=ExtResource( 9 )]
+transform = Transform( 0.915204, 0, -0.0733784, 0, 0.743932, 0, 0.0733784, 0, 0.915204, -3.49358, 15.7023, 20.9077 )
+
+[node name="ground5" parent="Castle2" instance=ExtResource( 9 )]
+transform = Transform( 1.22896, 0, -0.349776, 0, 1.01643, 0, 0.349776, 0, 1.22896, 13.5446, 13.884, -4.04855 )
+
+[node name="gate" parent="Castle2" instance=ExtResource( 11 )]
+transform = Transform( -0.0133241, 0, -0.499822, 0, 0.5, 0, 0.499822, 0, -0.0133241, 22.1192, 17.9523, 14.8982 )
+
+[node name="rookSquare" parent="Castle2" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 21.2559, 11.5976, 30.6335 )
+
+[node name="rookSquare5" parent="Castle2" instance=ExtResource( 13 )]
+transform = Transform( 0.7, 0, -1.49012e-08, 0, 0.7, 0, 1.49012e-08, 0, 0.7, 21.9971, 11.5976, -0.339638 )
+
+[node name="rookSquare2" parent="Castle2" instance=ExtResource( 13 )]
+transform = Transform( 0.68829, 0, -0.127505, 0, 0.7, 0, 0.127505, 0, 0.68829, 8.25058, 10.5429, 30.259 )
+
+[node name="rookSquare3" parent="Castle2" instance=ExtResource( 13 )]
+transform = Transform( 0.698766, 0, -0.041551, 0, 0.7, 0, 0.041551, 0, 0.698766, -3.74194, 10.5429, 27.2013 )
+
+[node name="wallDoor" parent="Castle2" instance=ExtResource( 16 )]
+transform = Transform( 0.499917, 0, -0.00909266, 0, 0.5, 0, 0.00909266, 0, 0.499917, 16.8319, 17.9749, 30.6496 )
+
+[node name="wallDoor2" parent="Castle2" instance=ExtResource( 16 )]
+transform = Transform( 0.499917, 0, -0.00909266, 0, 0.5, 0, 0.00909266, 0, 0.499917, 12.1727, 17.9749, 30.6496 )
+
+[node name="rookSquare4" parent="Castle2" instance=ExtResource( 13 )]
+transform = Transform( 0.0497314, 0, -0.698232, 0, 0.7, 0, 0.698232, 0, 0.0497314, -4.80724, 10.5429, 14.3938 )
+
+[node name="wallDoor3" parent="Castle2" instance=ExtResource( 16 )]
+transform = Transform( 0.0274664, 0, -0.499245, 0, 0.5, 0, 0.499245, 0, 0.0274664, -4.1423, 19.5649, 23.1122 )
+
+[node name="wallDoor4" parent="Castle2" instance=ExtResource( 16 )]
+transform = Transform( 0.0274664, 0, -0.499245, 0, 0.5, 0, 0.499245, 0, 0.0274664, -4.48283, 19.5649, 18.4654 )
+
+[node name="wall3" parent="Castle2" instance=ExtResource( 15 )]
+transform = Transform( 0.480244, 0, -0.13916, 0, 0.5, 0, 0.13916, 0, 0.480244, 2.23125, 17.2124, 28.5364 )
+
+[node name="tree1" parent="Castle2" instance=ExtResource( 19 )]
+transform = Transform( -0.220111, 0, -0.448945, 0, 0.5, 0, 0.448945, 0, -0.220111, 26.2446, 17.9084, 9.55581 )
+
+[node name="tree2" parent="Castle2" instance=ExtResource( 21 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.09513, 21.6858, 4.31738 )
+
+[node name="tree3" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( 0.129266, 0, -0.483001, 0, 0.5, 0, 0.483001, 0, 0.129266, 25.6498, 18.0018, 23.5401 )
+
+[node name="tree5" parent="Castle2" instance=ExtResource( 19 )]
+transform = Transform( -0.220111, 0, -0.448945, 0, 0.5, 0, 0.448945, 0, -0.220111, 9.37482, 21.4874, -1.99682 )
+
+[node name="tree6" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( 0.129266, 0, -0.483001, 0, 0.5, 0, 0.483001, 0, 0.129266, -2.49828, 21.5808, -2.81186 )
+
+[node name="tree7" parent="Castle2" instance=ExtResource( 21 )]
+transform = Transform( 0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, 51.244, 2.27415, 82.957 )
+
+[node name="tree10" parent="Castle2" instance=ExtResource( 21 )]
+transform = Transform( 0.34024, 0, 0.366385, 0, 0.5, 0, -0.366385, 0, 0.34024, 39.1072, 2.27415, 70.216 )
+
+[node name="tree8" parent="Castle2" instance=ExtResource( 19 )]
+transform = Transform( -0.220111, 0, -0.448946, 0, 0.5, 0, 0.448946, 0, -0.220111, 52.5548, 2.07578, 52.8867 )
+
+[node name="tree13" parent="Castle2" instance=ExtResource( 19 )]
+transform = Transform( -0.220111, 0, -0.448946, 0, 0.5, 0, 0.448946, 0, -0.220111, 23.6849, 5.0573, 81.0639 )
+
+[node name="tree9" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( 0.129266, 0, -0.483002, 0, 0.5, 0, 0.483002, 0, 0.129266, 42.4922, 2.16919, 57.2858 )
+
+[node name="tree11" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( -0.404258, 0, -0.294239, 0, 0.5, 0, 0.294239, 0, -0.404258, 47.3893, 2.16919, 67.4495 )
+
+[node name="tree12" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( -0.404258, 0, -0.294239, 0, 0.5, 0, 0.294239, 0, -0.404258, 39.4965, 2.16919, 84.2328 )
+
+[node name="tree4" parent="Castle2" instance=ExtResource( 20 )]
+transform = Transform( 0.129266, 0, -0.483001, 0, 0.5, 0, 0.483001, 0, 0.129266, 13.0779, 19.2017, -12.6092 )
+
+[node name="stone1" parent="Castle2" instance=ExtResource( 17 )]
+transform = Transform( 0.688422, 0.0300932, -0.00684072, -0.0297101, 0.687589, 0.0348765, 0.00834861, -0.0345466, 0.688197, 24.8652, 17.2086, -4.97502 )
+
+[node name="cloud3" parent="Castle2" instance=ExtResource( 18 )]
+transform = Transform( -0.32819, 0, -1.58505, 0, 1.61867, 0, 1.58505, 0, -0.328191, -6.60365, 34.1463, 46.6916 )
+
+[node name="cloud2" parent="Castle2" instance=ExtResource( 18 )]
+transform = Transform( -1.63121, 0, 0.172772, 0, 1.64034, 0, -0.172772, 0, -1.63122, 51.9209, 26.7722, 3.00788 )
+
+[node name="cloud" parent="Castle2" instance=ExtResource( 18 )]
+transform = Transform( -0.160737, 0, -0.776306, 0, 0.79277, 0, 0.776306, 0, -0.160737, -20.3006, 26.7486, 57.8875 )
+
+[node name="cloud4" parent="Castle2" instance=ExtResource( 18 )]
+transform = Transform( -0.788362, 0, 0.0835001, 0, 0.79277, 0, -0.0835001, 0, -0.788362, 69.3882, 11.8348, 12.8009 )

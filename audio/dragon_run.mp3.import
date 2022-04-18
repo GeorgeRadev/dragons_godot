@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dragon_run.mp3-ba9f2e8ca636c98f6895a64ed6955db0.mp3str"
+
+[deps]
+
+source_file="res://audio/dragon_run.mp3"
+dest_files=[ "res://.import/dragon_run.mp3-ba9f2e8ca636c98f6895a64ed6955db0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

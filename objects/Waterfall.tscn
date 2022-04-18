@@ -1,0 +1,129 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://fire/SmokeFrames_6x5.png" type="Texture" id=1]
+[ext_resource path="res://objects/WaterV.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/stone.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.0477272 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.838636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+width = 512
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector3( 0, 0, 1 )
+spread = 179.12
+flatness = 0.44
+initial_velocity = 4.0
+initial_velocity_random = 1.0
+scale = 0.1
+scale_random = 1.0
+scale_curve = SubResource( 14 )
+anim_speed = 1.0
+anim_speed_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=17]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 1, 1, 0.411765 )
+
+[sub_resource type="SphereMesh" id=18]
+material = SubResource( 17 )
+radial_segments = 4
+rings = 4
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 6.13475, 5.82247, 3.90942 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+direction = Vector3( 0, 0, 0.2 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, -0.5, 0 )
+initial_velocity = 1.5
+initial_velocity_random = 1.0
+radial_accel = 1.0
+radial_accel_random = 1.0
+angle = 360.0
+angle_random = 1.0
+anim_speed = 1.0
+anim_speed_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=20]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=21]
+material = SubResource( 20 )
+size = Vector2( 3, 3 )
+
+[node name="waterfall" type="StaticBody"]
+
+[node name="stone" parent="." instance=ExtResource( 8 )]
+transform = Transform( -0.0934654, 0, -0.995623, 0, 1, 0, 0.995623, 0, -0.0934654, -5.43966, 0, 1.84908 )
+
+[node name="stone2" parent="." instance=ExtResource( 8 )]
+transform = Transform( -0.0986517, 0.628698, -1.05087, 0.0587615, 1.05549, 0.625946, 1.22317, 0, -0.114826, 4.62964, 0, 1.92218 )
+
+[node name="stone3" parent="." instance=ExtResource( 8 )]
+transform = Transform( -0.403078, 0.514201, -3.70045, 0.285797, 4.38058, 1.25359, 2.76362, -0.152802, -0.350854, -0.505036, 2.48399, -1.26305 )
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.363011, 8.86158, 0.957691 )
+cast_shadow = 0
+amount = 100
+lifetime = 1.2
+randomness = 1.0
+fract_delta = false
+visibility_aabb = AABB( -2.94833, -6.76021, -2.46309, 5.89665, 11.2577, 4.92619 )
+local_coords = false
+draw_order = 2
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 18 )
+
+[node name="Water" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.00412048, -1.0524, 1.07062, 5.21703, 0.817002, 0.117517, -1.58734, 2.68793, 0.383458, -4.45103, 3.04296, 2.10328 )
+
+[node name="Water3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.00993925, 0.8698, 1.09417, 5.20734, 0.853839, -0.0964971, -1.61882, 2.74124, -0.317124, -2.29247, 3.04296, 2.10328 )
+
+[node name="Water2" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.00435021, -0.727717, 1.10913, 5.20093, 0.874365, 0.0842136, -1.63932, 2.77595, 0.264234, -0.104908, 3.04296, 2.10328 )
+
+[node name="Water4" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.00353775, 0.912288, 1.08913, 5.20941, 0.845486, -0.10211, -1.61218, 2.73, -0.332334, 2.10111, 3.04296, 2.10328 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.958626, 0.284668, 0, -0.284668, 0.958626, -1.25682, 1.98659, -1.94604 )
+shape = SubResource( 16 )
+
+[node name="Particles2" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905227, -0.752774, 4.60306 )
+amount = 100
+lifetime = 2.0
+speed_scale = 0.85
+randomness = 1.0
+fract_delta = false
+draw_order = 2
+process_material = SubResource( 19 )
+draw_pass_1 = SubResource( 21 )

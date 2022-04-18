@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dragon_bg_forest.mp3-ea7eb290a768f6dd6f6cf58835e2be85.mp3str"
+
+[deps]
+
+source_file="res://audio/dragon_bg_forest.mp3"
+dest_files=[ "res://.import/dragon_bg_forest.mp3-ea7eb290a768f6dd6f6cf58835e2be85.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

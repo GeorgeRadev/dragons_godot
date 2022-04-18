@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fire/SmokeFrames_6x5.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.254658, 1 )
+colors = PoolColorArray( 0.999023, 0.992888, 0.370731, 1, 1, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+width = 512
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0652174, 0.975 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.102273 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 4.0
+initial_velocity_random = 0.1
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+linear_accel = 2.0
+linear_accel_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_random = 0.8
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 7 )
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="CubeMesh" id=8]
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.333333, 0.25098, 0.00784314, 1 )
+
+[node name="Fire" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+amount = 200
+lifetime = 0.5
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.0365971, 0, 0, 0, 0.0319046, 0.141669, 0, -0.0179289, 0.252101, 0.00590563, 0, -0.111182 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.00750397, 0.017548, -0.246745, 0, 0.0319046, 0.141669, 0.0358195, -0.0036762, 0.0516916, 0.00590563, 0, 0.0210494 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( -0.0343944, -0.00612617, 0.086141, 0, 0.0319046, 0.141669, -0.0125049, 0.0168498, -0.236928, 0.00590563, 0, -0.103264 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( -0.0310994, -0.0038493, -0.149373, -0.00575439, 0.0360797, 0.0167518, 0.0184136, 0.00477392, -0.247047, 0.00590563, -0.107392, -0.103264 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( 0.0185658, -0.0180352, -0.204439, -0.0143338, 0.0219176, -0.201999, 0.0280928, 0.023102, 0.0320423, 0.205627, -0.106187, -0.0208652 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dragon_get.mp3-24016d7e1550ee54018146c6aeebecf0.mp3str"
+
+[deps]
+
+source_file="res://audio/dragon_get.mp3"
+dest_files=[ "res://.import/dragon_get.mp3-24016d7e1550ee54018146c6aeebecf0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

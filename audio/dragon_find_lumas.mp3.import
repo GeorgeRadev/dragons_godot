@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dragon_find_lumas.mp3-bfe0b2e58069839863ffdeee842158d2.mp3str"
+
+[deps]
+
+source_file="res://audio/dragon_find_lumas.mp3"
+dest_files=[ "res://.import/dragon_find_lumas.mp3-bfe0b2e58069839863ffdeee842158d2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
